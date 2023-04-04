@@ -1,0 +1,14 @@
+iversion: '3'
+
+services:
+  dnsexit:
+    image: etzion/dnsexit:latest
+    container_name: dnsexit
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - HOST=my.dnsexist.domain
+      - APIKEY=MY_API_KEY
+      - INTERVAL=600
+    restart: always
+
