@@ -4,8 +4,9 @@ IPFILE=/dev/shm/MYIP
 [ -f ${IPFILE} ] && MYIP=$( cat ${IPFILE} ) || MYIP="None"
 
 function updateIP() {
-	[ -n ${APIKEY_FILE} ] && APIKEY=$( cat ${APIKEY_FILE} )
+	[ -n "${APIKEY_FILE}" ] && APIKEY=$( cat ${APIKEY_FILE} )
 	#RESULT=$(curl -s "https://www.dnsexit.com/RemoteUpdate.sv?login=${LOGIN}&password=${PASSWORD}&host=${HOST}")
+	echo "curl -s -k https://api.dnsexit.com/dns/ud/?apikey=${APIKEY} -d host=${HOST}"
 	curl -s -k https://api.dnsexit.com/dns/ud/?apikey=${APIKEY} -d host=${HOST}
 	RESULT=$?
 	echo "result is $RESULT"
